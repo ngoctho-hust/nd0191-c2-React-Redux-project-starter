@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Question = (props) => {
   return (
@@ -8,15 +9,18 @@ const Question = (props) => {
         <p className="card-text">
           {new Date(props.question.timestamp).toDateString()}
         </p>
-        <a href="#" className="btn btn-outline-success">
+        <Link
+          to={"/questions/" + props.question.id}
+          className="btn btn-outline-success"
+        >
           Show
-        </a>
+        </Link>
       </div>
     </div>
   );
 };
 
-const mapStateToProps = ({ authedUser, users, questions }, { id }) => {
+const mapStateToProps = ({ authedUser, questions }, { id }) => {
   const question = questions[id];
 
   return {

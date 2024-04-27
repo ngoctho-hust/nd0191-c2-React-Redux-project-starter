@@ -6,8 +6,11 @@ import Header from "./Header";
 import { Route, Routes } from "react-router-dom";
 import AuthedRoute from "./AuthedRoute";
 import Login from "./Login";
+import Poll from "./Poll";
+import { LoadingBar } from "react-redux-loading-bar";
 
 const App = (props) => {
+  console.log(props);
   useEffect(() => {
     props.dispatch(handleInitialData());
   }, []);
@@ -15,23 +18,35 @@ const App = (props) => {
   return (
     <main>
       {props.authedUser && <Header />}
-      <Routes>
-        <Route path="/login" exact element={<Login />} />
-        <Route
-          path="/"
-          element={
-            <AuthedRoute>
-              <Dashboard />
-            </AuthedRoute>
-          }
-        />
-      </Routes>
+      <LoadingBar />
+      {props.loading === true ? null : (
+        <Routes>
+          <Route path="/login" exact element={<Login />} />
+          <Route
+            path="/"
+            element={
+              <AuthedRoute>
+                <Dashboard />
+              </AuthedRoute>
+            }
+          />
+          <Route
+            path="/questions/:id"
+            element={
+              <AuthedRoute>
+                <Poll />
+              </AuthedRoute>
+            }
+          />
+        </Routes>
+      )}
     </main>
   );
 };
 
-const mapStateToProps = ({ authedUser }) => ({
+const mapStateToProps = ({ authedUser, users }) => ({
   authedUser,
+  loading: users === null,
 });
 
 export default connect(mapStateToProps)(App);
