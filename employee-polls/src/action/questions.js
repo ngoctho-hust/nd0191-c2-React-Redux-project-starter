@@ -1,4 +1,5 @@
 import { saveQuestionAnswer } from "../utils/api";
+import { addUserAnswer } from "./users";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const ADD_QUESTION = "ADD_QUESTION";
@@ -18,10 +19,10 @@ export function addQuestion(question) {
   };
 }
 
-export function answerQuestion({ author, qid, answer }) {
+export function answerQuestion({ authedUser, qid, answer }) {
   return {
     type: ANSWER_QUESTION,
-    author,
+    authedUser,
     qid,
     answer,
   };
@@ -32,6 +33,7 @@ export function handleAnswerQuestion(info) {
     return saveQuestionAnswer(info)
       .then(() => {
         dispatch(answerQuestion(info));
+        dispatch(addUserAnswer(info));
       })
       .catch(() => {
         alert("Error when save question answer! Try again!");

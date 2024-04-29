@@ -7,8 +7,12 @@ const Poll = ({ questions, users, authedUser, dispatch }) => {
   const question = questions[id];
   const user = users[question.author];
 
+  const voted =
+    question.optionOne.votes.includes(authedUser) ||
+    question.optionTwo.votes.includes(authedUser);
+
   const handleClick = (answer) => {
-    dispatch(handleAnswerQuestion({ author: authedUser, qid: id, answer }));
+    dispatch(handleAnswerQuestion({ authedUser, qid: id, answer }));
   };
 
   return (
@@ -31,10 +35,11 @@ const Poll = ({ questions, users, authedUser, dispatch }) => {
                     onClick={() => {
                       handleClick("optionOne");
                     }}
+                    disabled={voted}
                     type="button"
                     className="w-100 btn btn-sm btn-primary"
                   >
-                    Click
+                    {voted ? question.optionOne.votes.length : "Click"}
                   </button>
                 </div>
               </div>
@@ -44,13 +49,14 @@ const Poll = ({ questions, users, authedUser, dispatch }) => {
                 <div className="card-body">
                   <p>{question.optionTwo.text}</p>
                   <button
+                    disabled={voted}
                     onClick={() => {
                       handleClick("optionTwo");
                     }}
                     type="button"
                     className="w-100 btn btn-sm btn-primary"
                   >
-                    Click
+                    {voted ? question.optionTwo.votes.length : "Click"}
                   </button>
                 </div>
               </div>
