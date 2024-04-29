@@ -22,7 +22,7 @@ const Header = ({ dispatch, authedUser }) => {
               </Link>
             </li>
             <li>
-              <Link to="/new" className="nav-link px-2 link-body-emphasis">
+              <Link to="/add" className="nav-link px-2 link-body-emphasis">
                 New
               </Link>
             </li>

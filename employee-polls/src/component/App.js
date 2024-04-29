@@ -9,6 +9,7 @@ import Login from "./Login";
 import Poll from "./Poll";
 import { LoadingBar } from "react-redux-loading-bar";
 import PollCreation from "./PollCreation";
+import Leaderboad from "./Leaderboad";
 
 const App = (props) => {
   useEffect(() => {
@@ -39,10 +40,18 @@ const App = (props) => {
             }
           />
           <Route
-            path="/new"
+            path="/add"
             element={
               <AuthedRoute>
                 <PollCreation />
+              </AuthedRoute>
+            }
+          />
+          <Route
+            path="/leaderboard"
+            element={
+              <AuthedRoute>
+                <Leaderboad />
               </AuthedRoute>
             }
           />

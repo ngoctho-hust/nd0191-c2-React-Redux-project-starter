@@ -1,10 +1,16 @@
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { handleAnswerQuestion } from "../action/questions";
+import Error404 from "./Error404";
 
 const Poll = ({ questions, users, authedUser, dispatch }) => {
   const { id } = useParams();
   const question = questions[id];
+
+  if (!authedUser || !question || !id) {
+    return <Error404 />;
+  }
+
   const user = users[question.author];
 
   const voted =
