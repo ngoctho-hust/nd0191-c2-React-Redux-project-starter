@@ -14,12 +14,15 @@ const Header = ({ dispatch, authedUser }) => {
               </Link>
             </li>
             <li>
-              <Link to="/" className="nav-link px-2 link-body-emphasis">
+              <Link
+                to="/leaderboard"
+                className="nav-link px-2 link-body-emphasis"
+              >
                 Leaderboard
               </Link>
             </li>
             <li>
-              <Link to="/" className="nav-link px-2 link-body-emphasis">
+              <Link to="/new" className="nav-link px-2 link-body-emphasis">
                 New
               </Link>
             </li>

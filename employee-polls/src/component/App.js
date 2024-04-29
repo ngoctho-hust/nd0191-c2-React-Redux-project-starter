@@ -8,9 +8,9 @@ import AuthedRoute from "./AuthedRoute";
 import Login from "./Login";
 import Poll from "./Poll";
 import { LoadingBar } from "react-redux-loading-bar";
+import PollCreation from "./PollCreation";
 
 const App = (props) => {
-  console.log(props);
   useEffect(() => {
     props.dispatch(handleInitialData());
   }, []);
@@ -35,6 +35,14 @@ const App = (props) => {
             element={
               <AuthedRoute>
                 <Poll />
+              </AuthedRoute>
+            }
+          />
+          <Route
+            path="/new"
+            element={
+              <AuthedRoute>
+                <PollCreation />
               </AuthedRoute>
             }
           />

@@ -1,4 +1,4 @@
-import { saveQuestionAnswer } from "../utils/api";
+import { saveQuestion, saveQuestionAnswer } from "../utils/api";
 import { addUserAnswer } from "./users";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
@@ -37,6 +37,18 @@ export function handleAnswerQuestion(info) {
       })
       .catch(() => {
         alert("Error when save question answer! Try again!");
+      });
+  };
+}
+
+export function handleAddQuestion(info) {
+  return (dispatch) => {
+    return saveQuestion(info)
+      .then((question) => {
+        dispatch(addQuestion(question));
+      })
+      .catch(() => {
+        alert("Error when save question! Try again!");
       });
   };
 }
