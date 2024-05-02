@@ -5,8 +5,7 @@ import peopleImg from "../media/people.png";
 import { setAuthedUser } from "../action/authedUser";
 
 const Login = ({ dispatch, authedUser, users }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [user, setUser] = useState(users ? Object.keys(users)[0] : undefined);
 
   const urlParams = new URLSearchParams(window.location.search);
   const redirectUrl = urlParams.get("redirectTo");
@@ -17,14 +16,10 @@ const Login = ({ dispatch, authedUser, users }) => {
   const handleLogin = (e) => {
     e.preventDefault();
     if (users) {
-      const user = Object.values(users).find(
-        (user) => user.id === username && user.password === password
-      );
-
       if (!!user) {
-        dispatch(setAuthedUser(user.id));
+        dispatch(setAuthedUser(user));
       } else {
-        alert("Wrong username or password!");
+        alert("Select an user to login!");
       }
     }
   };
@@ -40,36 +35,22 @@ const Login = ({ dispatch, authedUser, users }) => {
             <form onSubmit={handleLogin}>
               <div className="mb-3">
                 <label htmlFor="user" className="form-label">
-                  User
+                  Select user to login
                 </label>
-                <input
-                  value={username}
+                <select
                   onChange={(e) => {
-                    setUsername(e.target.value);
+                    setUser(e.target.value);
                   }}
-                  type="text"
-                  className="form-control"
-                  id="user"
-                  placeholder="User"
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="password" className="form-label">
-                  Password
-                </label>
-                <input
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                  type="password"
-                  className="form-control"
-                  id="exampleInputPassword1"
-                  placeholder="Password"
-                />
+                  class="form-select"
+                  aria-label="Select User"
+                >
+                  {Object.keys(users).map((userId) => (
+                    <option value={userId}>{userId}</option>
+                  ))}
+                </select>
               </div>
               <button type="submit" className="btn btn-primary">
-                Submit
+                Login
               </button>
             </form>
           </div>
