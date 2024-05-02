@@ -22,7 +22,7 @@ const Dashboard = ({ questions, authedUser, users }) => {
             onChange={(e) => {
               setOption(e.target.value);
             }}
-            class="form-select form-select-lg mb-3"
+            className="form-select form-select-lg mb-3"
             aria-label=".select option"
           >
             <option value="1">New Questions</option>

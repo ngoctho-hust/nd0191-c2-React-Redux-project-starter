@@ -5,7 +5,7 @@ import peopleImg from "../media/people.png";
 import { setAuthedUser } from "../action/authedUser";
 
 const Login = ({ dispatch, authedUser, users }) => {
-  const [user, setUser] = useState(users ? Object.keys(users)[0] : undefined);
+  const [user, setUser] = useState("");
 
   const urlParams = new URLSearchParams(window.location.search);
   const redirectUrl = urlParams.get("redirectTo");
@@ -41,11 +41,14 @@ const Login = ({ dispatch, authedUser, users }) => {
                   onChange={(e) => {
                     setUser(e.target.value);
                   }}
-                  class="form-select"
+                  className="form-select"
                   aria-label="Select User"
                 >
+                  <option value="">Select user to login</option>
                   {Object.keys(users).map((userId) => (
-                    <option value={userId}>{userId}</option>
+                    <option key={userId} value={userId}>
+                      {userId}
+                    </option>
                   ))}
                 </select>
               </div>
