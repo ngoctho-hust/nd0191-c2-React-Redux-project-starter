@@ -14,6 +14,7 @@ import Leaderboad from "./Leaderboad";
 const App = (props) => {
   useEffect(() => {
     props.dispatch(handleInitialData());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
