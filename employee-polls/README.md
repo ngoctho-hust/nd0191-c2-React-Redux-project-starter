@@ -1,5 +1,9 @@
 # Employee Polls
 
+A web app that lets an employee create polls for coworkers. Users will able to answer polls, see which polls they haven’t answered, see how other people have voted, post polls, and see the ranking of users on the leaderboard.
+
+## Installation guide
+
 ### `npm install`
 
 Install dependencies
