@@ -43,6 +43,7 @@ const Login = ({ dispatch, authedUser, users }) => {
                   }}
                   className="form-select"
                   aria-label="Select User"
+                  value={user}
                 >
                   <option value="">Select user to login</option>
                   {Object.keys(users).map((userId) => (

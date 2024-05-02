@@ -13,9 +13,9 @@ const Poll = ({ questions, users, authedUser, dispatch }) => {
 
   const user = users[question.author];
 
-  const voted =
-    question.optionOne.votes.includes(authedUser) ||
-    question.optionTwo.votes.includes(authedUser);
+  const votedOptionOne = question.optionOne.votes.includes(authedUser);
+  const votedOptionTwo = question.optionTwo.votes.includes(authedUser);
+  const voted = votedOptionOne || votedOptionTwo;
 
   const handleClick = (answer) => {
     dispatch(handleAnswerQuestion({ authedUser, qid: id, answer }));
@@ -43,7 +43,10 @@ const Poll = ({ questions, users, authedUser, dispatch }) => {
                     }}
                     disabled={voted}
                     type="button"
-                    className="w-100 btn btn-sm btn-primary"
+                    className={
+                      "w-100 btn btn-sm" +
+                      (votedOptionOne ? " btn-primary" : " btn-outline-primary")
+                    }
                   >
                     {voted ? question.optionOne.votes.length : "Click"}
                   </button>
@@ -60,7 +63,10 @@ const Poll = ({ questions, users, authedUser, dispatch }) => {
                       handleClick("optionTwo");
                     }}
                     type="button"
-                    className="w-100 btn btn-sm btn-primary"
+                    className={
+                      "w-100 btn btn-sm" +
+                      (votedOptionTwo ? " btn-primary" : " btn-outline-primary")
+                    }
                   >
                     {voted ? question.optionTwo.votes.length : "Click"}
                   </button>

@@ -34,38 +34,24 @@ Object {
                     class="form-label"
                     for="user"
                   >
-                    User
+                    Select user to login
                   </label>
-                  <input
-                    class="form-control"
-                    id="user"
-                    placeholder="User"
-                    type="text"
-                    value=""
-                  />
-                </div>
-                <div
-                  class="mb-3"
-                >
-                  <label
-                    class="form-label"
-                    for="password"
+                  <select
+                    aria-label="Select User"
+                    class="form-select"
                   >
-                    Password
-                  </label>
-                  <input
-                    class="form-control"
-                    id="exampleInputPassword1"
-                    placeholder="Password"
-                    type="password"
-                    value=""
-                  />
+                    <option
+                      value=""
+                    >
+                      Select user to login
+                    </option>
+                  </select>
                 </div>
                 <button
                   class="btn btn-primary"
                   type="submit"
                 >
-                  Submit
+                  Login
                 </button>
               </form>
             </div>
@@ -104,38 +90,24 @@ Object {
                   class="form-label"
                   for="user"
                 >
-                  User
+                  Select user to login
                 </label>
-                <input
-                  class="form-control"
-                  id="user"
-                  placeholder="User"
-                  type="text"
-                  value=""
-                />
-              </div>
-              <div
-                class="mb-3"
-              >
-                <label
-                  class="form-label"
-                  for="password"
+                <select
+                  aria-label="Select User"
+                  class="form-select"
                 >
-                  Password
-                </label>
-                <input
-                  class="form-control"
-                  id="exampleInputPassword1"
-                  placeholder="Password"
-                  type="password"
-                  value=""
-                />
+                  <option
+                    value=""
+                  >
+                    Select user to login
+                  </option>
+                </select>
               </div>
               <button
                 class="btn btn-primary"
                 type="submit"
               >
-                Submit
+                Login
               </button>
             </form>
           </div>
