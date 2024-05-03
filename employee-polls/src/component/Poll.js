@@ -17,6 +17,22 @@ const Poll = ({ questions, users, authedUser, dispatch }) => {
   const votedOptionTwo = question.optionTwo.votes.includes(authedUser);
   const voted = votedOptionOne || votedOptionTwo;
 
+  const getVoteInfo = (option) => {
+    const numOptionOneVotes = question.optionOne.votes.length;
+    const numOptionTwoVotes = question.optionTwo.votes.length;
+    const totalVotes = numOptionOneVotes + numOptionTwoVotes;
+
+    if (option === 1) {
+      const optionOnePerc = (100 * numOptionOneVotes) / totalVotes;
+      return `${numOptionOneVotes} (${optionOnePerc.toFixed(2)}%)`;
+    }
+    if (option === 2) {
+      const optionTwoPerc = (100 * numOptionTwoVotes) / totalVotes;
+      return `${numOptionTwoVotes} (${optionTwoPerc.toFixed(2)}%)`;
+    }
+    return;
+  };
+
   const handleClick = (answer) => {
     dispatch(handleAnswerQuestion({ authedUser, qid: id, answer }));
   };
@@ -48,7 +64,7 @@ const Poll = ({ questions, users, authedUser, dispatch }) => {
                       (votedOptionOne ? " btn-primary" : " btn-outline-primary")
                     }
                   >
-                    {voted ? question.optionOne.votes.length : "Click"}
+                    {voted ? getVoteInfo(1) : "Click"}
                   </button>
                 </div>
               </div>
@@ -68,7 +84,7 @@ const Poll = ({ questions, users, authedUser, dispatch }) => {
                       (votedOptionTwo ? " btn-primary" : " btn-outline-primary")
                     }
                   >
-                    {voted ? question.optionTwo.votes.length : "Click"}
+                    {voted ? getVoteInfo(2) : "Click"}
                   </button>
                 </div>
               </div>
